@@ -78,8 +78,43 @@ public class PacienteControllerMockMvcIT extends AbstractIntegration {
         crearMedico(medico);
         crearPaciente(paciente);
 
-        //Obtener paciente por ID
-        
+        mockMvc.perform(get("/paciente/" + paciente.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombre").value("Maria"))
+                .andExpect(jsonPath("$.dni").value("888"));
     }
 
+    @Test
+    @DisplayName("Eliminar un paciente existente")
+    void eliminarPaciente() throws Exception{
+        crearMedico(medico);
+        crearPaciente(paciente);
+
+        mockMvc.perform(delete("/paciente/" + paciente.getId()))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Actualizar un paciente existente")
+    void actualizarPaciente() throws Exception {
+        // 1. Preparación: Crear el escenario
+        crearMedico(medico);
+        crearPaciente(paciente);
+
+        // 2. Modificación: Cambiamos algo en el objeto local
+        paciente.setNombre("Maria Modificada");
+        paciente.setEdad(30);
+
+        // 3. Acción: Enviamos el PUT con el objeto actualizado en formato JSON
+        mockMvc.perform(put("/paciente") // Nota: A veces el endpoint es /paciente o /paciente/{id}
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(paciente)))
+                .andExpect(status().isNoContent());
+
+        // 4. Verificación: Comprobamos que el nombre ha cambiado de verdad
+        mockMvc.perform(get("/paciente/" + paciente.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombre").value("Maria Modificada"))
+                .andExpect(jsonPath("$.edad").value(30));
+    }
 }
