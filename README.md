@@ -1,6 +1,12 @@
 # SpringUMA — Medical Records System
 
-> ⚠️ Replace `daniiroblees` and `https://github.com/daniiroblees/Practica-6---Infraestructuras-y-Procesos-de-Soporte` with your actual GitHub account details.
+> ⚠️ Replace `` and `https://github.com/daniiroblees/` with your actual GitHub account details.
+>
+
+![Compile and tests](https://github.com/daniiroblees/Practica-6---Infraestructuras-y-Procesos-de-Soporte/actions/workflows/main.yml/badge.svg)
+<!-- ![example workflow](https://github.com/daniiroblees/Practica-6---Infraestructuras-y-Procesos-de-Soporte/actions/workflows/<WORKFLOW_FILE>/badge.svg)
+![example workflow](https://github.com/daniiroblees/Practica-6---Infraestructuras-y-Procesos-de-Soporte/actions/workflows/<WORKFLOW_FILE>/badge.svg) -->
+
 
 A Spring Boot REST API that models a small medical records system. Built as a practice project for the **Software Maintenance and Testing** course at the University of Málaga.
 
